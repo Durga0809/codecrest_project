@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CodeCrest DEVS</title>
+    <link rel="icon" href="/code.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      :root {
+        --navy: #0f172a;
+        --accent: #2563eb;
+        --white: #ffffff;
+      }
+
+      /* ================= NAVBAR ================= */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 6%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      }
+
+      .logo img {
+        height: 55px;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+      }
+
+      .navlinks {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+      }
+
+      .navlinks a {
+        text-decoration: none;
+        color: var(--navy);
+        font-weight: 500;
+        position: relative;
+      }
+
+      .navlinks a::after {
+        content: "";
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        transition: 0.3s;
+      }
+
+      .navlinks a:hover::after {
+        width: 100%;
+      }
+
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        font-size: 30px;
+        cursor: pointer;
+        color: var(--navy);
+      }
+
+      /* ================= CONTACT ================= */
+      .contact-wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .contact-left {
+        flex: 1;
+        background: white;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .contact-left h1 {
+        font-size: 40px;
+        margin-bottom: 15px;
+      }
+
+      .contact-left p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+
+      .contact-info p {
+        margin-bottom: 12px;
+        font-size: 16px;
+      }
+
+      .contact-right {
+        flex: 1;
+        background: #d1d5db;
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .contact-right h2 {
+        font-size: 32px;
+        margin-bottom: 25px;
+      }
+
+      .contact-right form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .contact-right input,
+      .contact-right textarea {
+        padding: 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+      }
+
+      .contact-right button {
+        padding: 14px;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      /* ================= FOOTER ================= */
+      .footer {
+        background-color: #0f172a;
+        color: #cbd5e1;
+        padding: 50px 20px 20px;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .footer-container {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+      }
+      .footer h2,
+      .footer h3 {
+        color: #ffffff;
+        margin-bottom: 12px;
+      }
+      .footer p {
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-links li {
+        margin-bottom: 8px;
+      }
+      .footer-links a {
+        text-decoration: none;
+        color: #cbd5e1;
+        font-size: 15px;
+        transition: color 0.3s;
+      }
+      .footer-links a:hover {
+        color: #38bdf8;
+      }
+      .footer-bottom {
+        border-top: 1px solid #1e293b;
+        margin-top: 30px;
+        padding-top: 15px;
+        text-align: center;
+        font-size: 14px;
+        color: #94a3b8;
+      }
+
+      /* ================= TOP BUTTON ================= */
+      .btn-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: #218838;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+
+        nav {
+          position: absolute;
+          top: 75px;
+          left: 0;
+          width: 100%;
+          background: white;
+          display: none;
+          flex-direction: column;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        nav.active {
+          display: flex;
+        }
+
+        .navlinks {
+          flex-direction: column;
+          padding: 20px 0;
+          gap: 15px;
+          text-align: center;
+        }
+
+        .contact-wrapper {
+          flex-direction: column;
+        }
+
+        .contact-left,
+        .contact-right {
+          padding: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="logo">
+        <img src="/logo.jpeg" alt="CodeCrest DEVS Logo" />
+      </div>
+      <div class="hamburger" id="hamburger">☰</div>
+
+      <nav id="navMenu">
+        <ul class="navlinks">
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/courses.html">Courses</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- CONTACT -->
+    <section class="contact-wrapper">
+      <div class="contact-left">
+        <h1>CodeCrest DEVS</h1>
+        <p>Building future-ready developers.</p>
+        <div class="contact-info">
+          <p>📍 Tamil Nadu, India</p>
+          <p>📧 codecrestdevs@gmail.com</p>
+          <p>📞 +91 98765 43210</p>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <h2>Contact Us</h2>
+        <form>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+          <textarea rows="4" placeholder="Message"></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>CodeCrest DEVS</h2>
+          <p>Building modern, scalable and user-friendly web solutions.</p>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/courses.html">Services</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <p>Email: info@codecrestdevs.com</p>
+          <p>Phone: +91 98765 43210</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 CodeCrest DEVS. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <div class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      ↑
+    </div>
+
+    <!-- JS -->
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("navMenu");
+
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>

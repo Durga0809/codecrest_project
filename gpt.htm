@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeCrest DEVS</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="icon" href="/code.ico" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    :root {
+      --navy: #0f172a;
+      --accent: #2563eb;
+      --white: #ffffff;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 6%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo img {
+      height: 55px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .navlinks {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 500;
+      position: relative;
+    }
+
+    .navlinks a::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      transition: 0.3s;
+    }
+
+    .navlinks a:hover::after {
+      width: 100%;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: var(--navy);
+    }
+
+    /* ================= HERO ================= */
+    .herosection {
+      background-color: #e5e7eb;
+      padding: 60px 6%;
+    }
+
+    .course-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ================= FOOTER ================= */
+    .footer {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      padding: 50px 20px 20px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .footer h2,
+    .footer h3 {
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #cbd5e1;
+    }
+
+    .footer-links a:hover {
+      color: #38bdf8;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      margin-top: 30px;
+      padding-top: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* ================= BACK TO TOP ================= */
+    .btn-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #218838;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: white;
+        display: none;
+        flex-direction: column;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .navlinks {
+        flex-direction: column;
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      .navlinks li {
+        text-align: center;
+        padding: 12px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="/logo.jpeg" alt="CodeCrest DEVS">
+    </div>
+
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <nav id="navMenu">
+      <ul class="navlinks">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========== COURSES SECTION (ALL CARDS) ========== -->
+  <section class="herosection">
+    <div class="container">
+      <div class="row g-4">
+
+        <!-- CARD TEMPLATE -->
+        <!-- Repeat cards -->
+        <script>
+          const courses = [
+            ["html.webp","HTML","Front End"],
+            ["css.png","CSS","Styling"],
+            ["js.png","JavaScript","Logic"],
+            ["angular.jpg","Angular","Framework"],
+            ["php.jpg","PHP","Backend"],
+            ["csharp.jpg","C#","Programming"],
+            ["java.jpg","Java","Programming"],
+            ["python.jpeg","Python","Programming"],
+            ["c and c++.webp","C/C++","Programming"],
+            ["sql.png","SQL","Database"],
+            ["springboot.jpg","Spring Boot","Java Framework"],
+            ["react.jpg","React","Library"],
+            ["bootstrap.jpg","Bootstrap","CSS Framework"],
+            ["word.jpg","MS Word","Office"],
+            ["reactnative.jpg","React Native","Mobile"],
+            ["powerpoint.jpg","PowerPoint","Office"],
+            ["mysql.jpg","MySQL","Database"],
+            ["excel.jpg","Excel","Office"],
+            ["mongodb.jpg","MongoDB","Database"],
+            ["powerbi.jpg","Power BI","Analytics"]
+          ];
+        </script>
+
+        <!-- Cards Render -->
+        <script>
+          document.write(
+            courses.map(c => `
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="card course-card h-100">
+                <img src="/images/${c[0]}" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5>${c[1]}</h5>
+                  <p>${c[2]}</p>
+                </div>
+              </div>
+            </div>
+          `).join("")
+          );
+        </script>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <h2>CodeCrest DEVS</h2>
+        <p>Modern & scalable web solutions.</p>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 CodeCrest DEVS
+    </div>
+  </footer>
+
+  <div class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+  <!-- ========== JS ========== -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
